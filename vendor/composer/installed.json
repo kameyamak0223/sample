@@ -1,29 +1,30 @@
 [
     {
         "name": "linecorp/line-bot-sdk",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/line/line-bot-sdk-php.git",
-            "reference": "439e09646de7725e7703fcb153eb805222c4f0d7"
+            "reference": "38528aaa3a1abc2809974ab65cdcb7579f9eb927"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/line/line-bot-sdk-php/zipball/439e09646de7725e7703fcb153eb805222c4f0d7",
-            "reference": "439e09646de7725e7703fcb153eb805222c4f0d7",
+            "url": "https://api.github.com/repos/line/line-bot-sdk-php/zipball/38528aaa3a1abc2809974ab65cdcb7579f9eb927",
+            "reference": "38528aaa3a1abc2809974ab65cdcb7579f9eb927",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.6"
+            "php": ">=5.4"
         },
         "require-dev": {
             "apigen/apigen": "~4.1",
+            "indigophp/hash-compat": "~1.1.0",
             "phpmd/phpmd": "~2.4",
             "phpunit/phpunit": "^4.8.24",
             "squizlabs/php_codesniffer": "~2.6"
         },
-        "time": "2016-10-19 07:19:32",
+        "time": "2017-09-20T10:22:04+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
