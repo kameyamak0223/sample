@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/vendor/autload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $httpClient = new \LINE\LINEBot\HTTPClient(getenv('CHANNEL_ACCESS_TOKEN'));
 $bot = new \LINE\LINEBot($httpClient, ['hannelSecret' => getenv('CHANNEL_SECRET')]);
