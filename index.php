@@ -37,16 +37,17 @@ foreach($events as $event){
 //            ->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 114))
 //            );
     
-    replyTextMessage($bot, $event->getReplyToken(), $profile["displayName"] . "さん、お誕生日おめでとうございます！！");
+    //replyTextMessage($bot, $event->getReplyToken(), $profile["displayName"] . "さん、お誕生日おめでとうございます！！");
     //replyImageMessage($bot, $event->getReplyToken(), "https://" . $_SERVER["HTTP_HOST"] . "/imgs/original.jpg", "https://" . $_SERVER["HTTP_HOST"] . "/imgs/preview.jpg");
     //replyLocationMessage($bot, $event->getReplyToken(), "LINE", "東京都渋谷区2-21-1 ヒカリエ27階", 35.659025, 139.703473);
     
-    //replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
-//    replyMultiMessage($bot, $event->getReplyToken(), 
-//            new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('TextMessage'),
-//            new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://" . $_SERVER["HTTP_HOST"] . "/imgs/original.jpg", "https://" . $_SERVER["HTTP_HOST"] . "/imgs/preview.jpg"),
-//            new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder("LINE", "東京都渋谷区渋谷2-21-1 ヒカリエ27階", 35.659025, 139.703473),
-//            new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 1));
+//    replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
+    replyMultiMessage($bot, $event->getReplyToken(), 
+            new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($profile["displayName"] . "さん、お誕生日おめでとうございます！！"),
+            new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://" . $_SERVER["HTTP_HOST"] . "/imgs/FotoJet.jpg", "https://" . $_SERVER["HTTP_HOST"] . "/imgs/FotoJet.jpg")
+            //new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder("LINE", "東京都渋谷区渋谷2-21-1 ヒカリエ27階", 35.659025, 139.703473),
+            //new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 1)
+            );
 }
 
 //テキストの返信
