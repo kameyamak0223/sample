@@ -107,10 +107,10 @@ function replyMultiMessage($bot, $replyToken, ...$msgs){
 ///ボタンテンプレート
 function replyButonsTemplate($bot, $replyToken, $alternativeText, $imageUrl, $title, $text, ...$actions){
     $actionArray = array();
-    foreach($acitons as $value){
+    foreach($actions as $value){
         array_push($actionArray, $value);
     }
-    $builder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder($altText, new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $imageUrl, $actionArray));
+    $builder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder($alternativeText, new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $imageUrl, $actionArray));
     $response = $bot->replyMessage($replyToken, $builder);
     if(!$response->isSucceeded()){
         error_log('Failed!' > $respose->getHTTPStatus . ' ' . $response->getRawBody());
