@@ -96,6 +96,8 @@ $columnArray = array();
     );
     array_push($columnArray, $column);
   }
+    replyCarouselTemplate($bot, $event->getReplyToken(),"今後の天気予報", $columnArray);
+
 }
 
 //テキストの返信
