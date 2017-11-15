@@ -66,9 +66,14 @@ foreach($events as $event){
 //            new LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("週末の天気", "weekend"),
 //            new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Webで見る", "http://google.jp"));
     
-    replyConfirmTemplate($bot, $event->getReplyToken(), "Webで詳しく見ますか？", "Webで詳しく見ますか？", new \LINE\LINEBot\TemplateActionBuilder("見る", "http://google.jp"),
+    replyConfirmTemplate($bot,
+            $event->getReplyToken(),
+            "Webで詳しく見ますか？",
+            "Webで詳しく見ますか？",
+            new \LINE\LINEBot\TemplateActionBuilder("見る", "http://google.jp"),
             new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("見ない", "ignore"),
-            new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("非表示", "never"));
+            new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("非表示", "never")
+            );
 }
 
 //テキストの返信
@@ -134,7 +139,7 @@ function replyConfirmTemplate($bot, $replyToken, $alternativeText, $text, ...$ac
     foreach($actions as $value){
         array_push($actionArray, $value);
     }
-    $builder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder($altText, new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder($text, $actionArray));
+    $builder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder($alternativeText, new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder($text, $actionArray));
     $response = $bot->replyMessage($replyToken, $builder);
     if(!$response->isSucceeded()){
         error_log('Failed!' . $response->getHTTPStatus. ' ' . $response->getRawBody());
