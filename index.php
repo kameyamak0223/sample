@@ -70,7 +70,7 @@ foreach($events as $event){
             $event->getReplyToken(),
             "Webで詳しく見ますか？",
             "Webで詳しく見ますか？",
-            new \LINE\LINEBot\TemplateActionBuilder("見る", "http://google.jp"),
+            new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("見る", "http://google.jp"),
             new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("見ない", "ignore"),
             new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("非表示", "never")
             );
