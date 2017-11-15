@@ -28,7 +28,7 @@ foreach($events as $event){
         continue;
     }
     //$bot->replyText($event->getReplyToken(), $event->getText());
-    $profile = $bot->getProfile($event->getUserId())->getJSONDecodedBody();
+//    $profile = $bot->getProfile($event->getUserId())->getJSONDecodedBody();
 //    $message = $profile["displayName"] . "さん、おはようございます！今日も頑張りましょう！";
 //    $bot->replyMessage(
 //            $event->getReplyToken(),
@@ -42,12 +42,22 @@ foreach($events as $event){
     //replyLocationMessage($bot, $event->getReplyToken(), "LINE", "東京都渋谷区2-21-1 ヒカリエ27階", 35.659025, 139.703473);
     
 //    replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
-    replyMultiMessage($bot, $event->getReplyToken(), 
-            new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($profile["displayName"] . "さん、お誕生日おめでとうございます！！"),
-            new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://" . $_SERVER["HTTP_HOST"] . "/imgs/FotoJet.jpg", "https://" . $_SERVER["HTTP_HOST"] . "/imgs/FotoJet.jpg")
+//    replyMultiMessage($bot, $event->getReplyToken(), 
+//            new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($profile["displayName"] . "さん、お誕生日おめでとうございます！！"),
+//            new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://" . $_SERVER["HTTP_HOST"] . "/imgs/FotoJet.jpg", "https://" . $_SERVER["HTTP_HOST"] . "/imgs/FotoJet.jpg")
             //new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder("LINE", "東京都渋谷区渋谷2-21-1 ヒカリエ27階", 35.659025, 139.703473),
             //new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 1)
-            );
+//            );
+    
+    replyButonsTemplate($bot,
+            $event->getReplyToken(),
+            "お天気お知らせ - 今日は天気予報は晴れです",
+            "https://" . $_SERVER["HTTP_HOST"] . "/imgs/template.jpg",
+            "お天気お知らせ",
+            "今日は天気予報は晴れです",
+            new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("明日の天気", "tommorow"),
+            new LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("週末の天気", "weekend"),
+            new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Webで見る", "http://google.jp"));
 }
 
 //テキストの返信
@@ -92,5 +102,17 @@ function replyMultiMessage($bot, $replyToken, ...$msgs){
     $respose = $bot->replyMessage($replyToken, $builder);
     if(!$respose->isSucceeded()){
         error_log('Failed!' . $respose->getHTTPStatus . ' ' . $respose->getRawBody());
+    }
+}
+///ボタンテンプレート
+function replyButonsTemplate($bot, $replyToken, $alternativeText, $imageUrl, $title, $text, ...$actions){
+    $actionArray = array();
+    foreach($acitons as $value){
+        array_push($actionArray, $value);
+    }
+    $builder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder($altText, new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $imageUrl, $actionArray));
+    $response = $bot->replyMessage($replyToken, $builder);
+    if(!$response->isSucceeded()){
+        error_log('Failed!' > $respose->getHTTPStatus . ' ' . $response->getRawBody());
     }
 }
