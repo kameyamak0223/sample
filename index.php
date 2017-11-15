@@ -19,10 +19,17 @@ try{
 }
 
 foreach($events as $event){
+    
+    if($event instanceof \LINE\LINEBot\Event\PostbackEvent){
+        replyTextMessage($bot, $event->getReplyToken(), "Postback受信「" . $event->getPostbackData() . "」");
+        continue;
+    }
+    
     if(!($event instanceof \LINE\LINEBot\Event\MessageEvent)){
         error_log('Non message event has come');
         continue;
     }
+    
     if(!($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)){
         error_log('Non text message has come');
         continue;
